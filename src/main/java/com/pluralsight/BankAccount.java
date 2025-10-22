@@ -63,8 +63,18 @@ public class BankAccount {
              System.out.println("Withdrawal successful!");
              System.out.println("Your balance is: " + balance);
          }
-
-
-
     }
+
+    public void getAccountInfo(){
+
+            System.out.println("Your Account Number is: " + accountNumber);
+            System.out.println("Account holder is: " + accountNumber);
+            System.out.println("Account balance is: " + balance);
+            if(isActive){
+                System.out.println("Your account is currently active");
+            }else{
+                System.out.println("Your account is not currently active");
+            }
+    }
+
 }
