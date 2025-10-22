@@ -66,15 +66,14 @@ public class BankAccount {
     }
 
     public void getAccountInfo(){
-
+        if(isActive){
             System.out.println("Your Account Number is: " + accountNumber);
             System.out.println("Account holder is: " + accountNumber);
             System.out.println("Account balance is: " + balance);
-            if(isActive){
-                System.out.println("Your account is currently active");
             }else{
-                System.out.println("Your account is not currently active");
+                System.out.println("Cannot provide account info. Your account is INACTIVE");
             }
+
     }
 
 }
