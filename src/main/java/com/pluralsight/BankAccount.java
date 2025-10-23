@@ -78,17 +78,27 @@ public class BankAccount {
             }
     }
 
-    public static void createNewAccount(List<BankAccount> allBankAccounts){
+    public static void addAccount(List<BankAccount> allBankAccounts){
 
         try(BufferedWriter buffWrite = new BufferedWriter(new FileWriter("UserAccounts.csv"))){
+        //Create string for header
+            String header = String.format("\n%-15s| %-25s| %-15s| %-10s\n", "Account Number", "Account Name", "Amount", "Status");
 
+            //write header to csv
+            buffWrite.write(header);
 
+            //cycle through allBankAccounts collection from BankAccount instance
+            for (BankAccount b : allBankAccounts){
+
+                //Format accounts to look pretty on csv
+                String formatAccs = String.format("\n%-15s| %-25s| %-15s| %-10s\n", b.getAccountNumber(),b.getAccountHolder(),b.getBalance(),b.isActive());
+
+                //write to csv file
+                buffWrite.write(formatAccs);
+            }
         }catch(IOException e){
-            System.out.println("Failure creating account, try again later");
+            System.out.println("Failure adding account, try again later");
         }
-
-
-
     }
 
     public static List<BankAccount> readAccounts(String filePath){
@@ -97,7 +107,7 @@ public class BankAccount {
         List<BankAccount> accounts = new ArrayList<>();
 
         //try\catch with resources creating buffered reader, containing fileReader reading UserAccounts.csv
-        try(BufferedReader buffRead = new BufferedReader (new FileReader("UserAccounts.csv"))){
+        try(BufferedReader buffRead = new BufferedReader (new FileReader(filePath))){
 
             //Create String to store data from file
             String line;
